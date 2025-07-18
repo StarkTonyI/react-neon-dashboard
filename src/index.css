@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Hacker Dashboard Dark Theme */
+    --background: 200 15% 8%;
+    --foreground: 120 100% 85%;
+
+    --card: 200 15% 10%;
+    --card-foreground: 120 100% 85%;
+
+    --popover: 200 15% 12%;
+    --popover-foreground: 120 100% 85%;
+
+    --primary: 120 100% 50%;
+    --primary-foreground: 200 15% 8%;
+
+    --secondary: 180 100% 35%;
+    --secondary-foreground: 200 15% 8%;
+
+    --muted: 200 15% 15%;
+    --muted-foreground: 120 30% 60%;
+
+    --accent: 60 100% 50%;
+    --accent-foreground: 200 15% 8%;
+
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 200 15% 8%;
+
+    --border: 120 50% 25%;
+    --input: 200 15% 15%;
+    --ring: 120 100% 50%;
+
+    --radius: 0.25rem;
+
+    /* Custom hacker theme colors */
+    --cyber-green: 120 100% 50%;
+    --cyber-cyan: 180 100% 50%;
+    --cyber-yellow: 60 100% 50%;
+    --cyber-red: 0 85% 55%;
+    --cyber-blue: 240 100% 60%;
+    --cyber-purple: 270 100% 70%;
+    
+    /* Glow effects */
+    --glow-primary: 0 0 20px hsl(120 100% 50% / 0.5);
+    --glow-secondary: 0 0 20px hsl(180 100% 50% / 0.5);
+    --glow-accent: 0 0 20px hsl(60 100% 50% / 0.5);
+    --glow-danger: 0 0 20px hsl(0 85% 55% / 0.5);
+    
+    /* Animations */
+    --pulse-duration: 2s;
+    --scan-duration: 3s;
+
+    --sidebar-background: 200 15% 10%;
+    --sidebar-foreground: 120 100% 85%;
+    --sidebar-primary: 120 100% 50%;
+    --sidebar-primary-foreground: 200 15% 8%;
+    --sidebar-accent: 200 15% 15%;
+    --sidebar-accent-foreground: 120 100% 85%;
+    --sidebar-border: 120 50% 25%;
+    --sidebar-ring: 120 100% 50%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+  }
+}
+
+@layer components {
+  /* Hacker dashboard components */
+  .terminal-border {
+    @apply border border-primary/30 bg-card/50 backdrop-blur-sm;
+    box-shadow: 
+      0 0 10px hsl(var(--primary) / 0.3),
+      inset 0 0 10px hsl(var(--primary) / 0.1);
+  }
+  
+  .glow-text {
+    @apply text-primary;
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.8);
+  }
+  
+  .cyber-grid {
+    background-image: 
+      linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .scan-line {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .scan-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+    animation: scan var(--scan-duration) infinite;
+  }
+  
+  .data-stream {
+    @apply font-mono text-xs;
+    animation: dataFlow 2s infinite linear;
+  }
+  
+  .pulse-glow {
+    animation: pulseGlow var(--pulse-duration) infinite;
+  }
+  
+  .flicker {
+    animation: flicker 0.15s infinite linear alternate;
+  }
+}
+
+@layer utilities {
+  .text-cyber-green { @apply text-[hsl(var(--cyber-green))]; }
+  .text-cyber-cyan { @apply text-[hsl(var(--cyber-cyan))]; }
+  .text-cyber-yellow { @apply text-[hsl(var(--cyber-yellow))]; }
+  .text-cyber-red { @apply text-[hsl(var(--cyber-red))]; }
+  .text-cyber-blue { @apply text-[hsl(var(--cyber-blue))]; }
+  .text-cyber-purple { @apply text-[hsl(var(--cyber-purple))]; }
+  
+  .bg-cyber-green { @apply bg-[hsl(var(--cyber-green))]; }
+  .bg-cyber-cyan { @apply bg-[hsl(var(--cyber-cyan))]; }
+  .bg-cyber-yellow { @apply bg-[hsl(var(--cyber-yellow))]; }
+  .bg-cyber-red { @apply bg-[hsl(var(--cyber-red))]; }
+  .bg-cyber-blue { @apply bg-[hsl(var(--cyber-blue))]; }
+  .bg-cyber-purple { @apply bg-[hsl(var(--cyber-purple))]; }
+}
+
+@keyframes scan {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes dataFlow {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-20px); opacity: 0; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.5);
+    text-shadow: 0 0 5px hsl(var(--primary) / 0.5);
+  }
+  50% { 
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.8);
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.8);
+  }
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
